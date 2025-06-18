@@ -1,4 +1,4 @@
-const GEMINI_API_KEY ='AIzaSyC0zvS33u41xvGC2vjPjcnhnPdr6pznAEg';
+const GEMINI_API_KEY = 'AIzaSyC0zvS33u41xvGC2vjPjcnhnPdr6pznAEg';
 
 // To run this code you need to install the following dependencies:
 // npm install @google/genai mime
@@ -23,15 +23,17 @@ async function runChat(prompt) {
     },
   ];
 
-  const response = await ai.models.generateContentStream({
+  const response = await ai.models.generateContent({
     model,
     config,
     contents,
   });
-  let fileIndex = 0;
-  for await (const chunk of response) {
-    console.log(chunk.text);
-  }
+
+  const resultText = response.candidates[0]?.content?.parts[0]?.text || '';
+
+  console.log(resultText);
+
+  return resultText; 
 }
 
 export default runChat;

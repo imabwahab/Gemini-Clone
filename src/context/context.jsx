@@ -1,22 +1,63 @@
-import {createContext} from "react";
+import { createContext, use, useEffect, useState } from "react";
 
 import runChat from "../config/gemini";
 
-const context = createContext();
+export const chatContext = createContext({
+  input: "",
+  setInput: () => { },
+  recentPrompt: "",
+  setRecentPrompt: () => { },
+  previousPrompt: "",
+  setPreviousPrompt: () => { },
+  showResult: false,
+  setShowResult: () => { },
+  resultData: '',
+  setResultData: () => { },
+  loading: false,
+  setLoading: () => { },
+  onSent: () => { },
 
-export const ContextProvider = (props) =>{
+});
 
-  const contextValue = {};
+export const ContextProvider = (props) => {
+  const [input, setInput] = useState('');
+  const [recentPrompt, setRecentPrompt] = useState("");
+  const [previousPrompt, setPreviousPrompt] = useState("");
+  const [showResult, setShowResult] = useState(false);
+  const [resultData, setResultData] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const onSent = async (message) => {
-    await runChat(message);
+    const result = await runChat(message);
+    setResultData(result);
   }
 
-  onSent("Hello, Gemini!");
+  // This effect runs whenever `input` changes
+  useEffect(() => {
+    if (input.trim() !== '') {
+      onSent(input);
+    }
+  }, [input]); 
+
+  const contextValue = {
+    input,
+    setInput,
+    previousPrompt,
+    setPreviousPrompt,
+    onSent,
+    recentPrompt,
+    setRecentPrompt,
+    showResult,
+    loading,
+    resultData
+
+  };
 
   return (
-    <context.Provider value={contextValue}>
+    <chatContext.Provider value={contextValue}>
       {props.children}
-    </context.Provider>
+    </chatContext.Provider>
   );
+
 }
+

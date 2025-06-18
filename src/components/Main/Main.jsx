@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useContext, useRef } from 'react'
 import { assets } from '../../assets/assets';
 import { FaMicrophone, FaPaperPlane } from 'react-icons/fa';
+import { chatContext } from '../../context/context';
 
 import './Main.css';
 const Main = () => {
+  const {input, setInput, onSent, recentPrompt,showResult, loading, resultData  } = useContext(chatContext);
+
+  const inputRef = useRef(null);
+
+  const HandleSubmit = (e) => {
+    e.preventDefault(); 
+    const message = inputRef.current.value.trim();
+    if (message) {
+      setInput(message);
+      inputRef.current.value = '';
+    }
+
+  }
   return (
     <div className='messageWindow'>
       <nav>
@@ -40,21 +54,24 @@ const Main = () => {
         </div>
 
         <div className="bottom-bar">
-          <div className="input-container">
+          <form className="input-container" onSubmit={HandleSubmit}>
             <input
               type="text"
               placeholder="Send a message..."
               className="chat-input"
+              ref={inputRef}
             />
             <div className="icon-buttons">
               <button className="icon-btn" aria-label="Voice Input">
                 <FaMicrophone />
               </button>
-              <button className="icon-btn" aria-label="Send Message">
+              <button type='submit' className="icon-btn" aria-label="Send Message">
                 <FaPaperPlane />
               </button>
             </div>
-          </div>
+          </form>
+
+
           <p>Gemini may display inaccurate info, including about people, so double-check its responses. Your privacy and Gemini Apps</p>
         </div>
       </div>
