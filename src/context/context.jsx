@@ -28,14 +28,24 @@ export const ContextProvider = (props) => {
   const [loading, setLoading] = useState(false);
 
   const onSent = async (message) => {
+    setResultData('');
+    setLoading(true);
+    setShowResult(true);
     const result = await runChat(message);
-    setResultData(result);
+    if (result !== null) {
+      setResultData(result);
+      setLoading(false);
+      setShowResult(true);
+      setInput(''); // Clear input after sending
+      
+    }
   }
 
   // This effect runs whenever `input` changes
   useEffect(() => {
     if (input.trim() !== '') {
       onSent(input);
+      setRecentPrompt(input);
     }
   }, [input]); 
 

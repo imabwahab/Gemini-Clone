@@ -1,16 +1,17 @@
 import React, { useContext, useRef } from 'react'
+import ReactMarkdown from 'react-markdown';
 import { assets } from '../../assets/assets';
 import { FaMicrophone, FaPaperPlane } from 'react-icons/fa';
 import { chatContext } from '../../context/context';
-
+import { RiGeminiFill } from "react-icons/ri";
 import './Main.css';
 const Main = () => {
-  const {input, setInput, onSent, recentPrompt,showResult, loading, resultData  } = useContext(chatContext);
+  const { input, setInput, onSent, recentPrompt, showResult, loading, resultData } = useContext(chatContext);
 
   const inputRef = useRef(null);
 
   const HandleSubmit = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     const message = inputRef.current.value.trim();
     if (message) {
       setInput(message);
@@ -26,12 +27,12 @@ const Main = () => {
       </nav>
 
       <div className="mainContainer">
-        <div className="greet">
+        {!showResult && <div className="greet">
           <p><span>Hello, Abdul Wahab.</span></p>
           <p>How I can help you today?</p>
-        </div>
+        </div>}
 
-        <div className="cards">
+        {!showResult && <div className="cards">
           <div className="card">
             <p>Suggest beautiful places to see on an upcoming road trip.</p>
             <img src={assets.compass_icon} alt="" />
@@ -42,16 +43,38 @@ const Main = () => {
             <img src={assets.bulb_icon} alt="" />
           </div>
 
-          {/* <div className="card">
-            <p>Brainstorm team bonding activities for our work retreat.</p>
-            <img src={assets.message_icon} alt="" />
-          </div> */}
-
           <div className="card">
             <p>Tell me about ReactJs and React Native.</p>
             <img src={assets.code_icon} alt="" />
           </div>
-        </div>
+        </div>}
+
+        {showResult && (
+          <div className="gemini-style-result">
+
+            <div className="prompt-box">
+              <img src={assets.user_icon} alt="" />
+              <p>{recentPrompt}</p>
+            </div>
+
+            <div className="response-box">
+              {loading ? (
+                <>
+                  <RiGeminiFill className='icon' />
+                  <p className="loading">Loading...</p>
+                </>
+              ) : (
+                <p className="markdown-response">
+                  <RiGeminiFill className='icon' />
+                  <ReactMarkdown >
+                    {resultData}
+                  </ReactMarkdown>
+
+                </p>
+              )}
+            </div>
+          </div>
+        )}
 
         <div className="bottom-bar">
           <form className="input-container" onSubmit={HandleSubmit}>
@@ -72,7 +95,6 @@ const Main = () => {
           </form>
 
 
-          <p>Gemini may display inaccurate info, including about people, so double-check its responses. Your privacy and Gemini Apps</p>
         </div>
       </div>
 

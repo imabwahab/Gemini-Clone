@@ -1,11 +1,11 @@
-.messageWindow{
+.messageWindow {
   flex: 1;
   min-height: 100vh;
   padding-bottom: 1vh;
   position: relative;
 }
 
-.messageWindow nav{
+.messageWindow nav {
   padding: 20px 10px;
   display: flex;
   align-items: center;
@@ -14,19 +14,20 @@
   color: #585858;
 }
 
-.messageWindow nav img{
+.messageWindow nav img {
   width: 48px;
   border-radius: 50%;
 }
 
-.messageWindow  .mainContainer{
+.messageWindow .mainContainer {
   max-width: 900px;
-  margin:  auto;
+  margin: auto;
 }
-.mainContainer .greet{
+
+.mainContainer .greet {
   margin: 20px 0px;
   font-size: 56px;
-  color:#c4c7c5 ;
+  color: #c4c7c5;
   font-family: 500;
   padding: 20px;
 }
@@ -84,7 +85,7 @@
 
 
 .bottom-bar {
-  position: relative;
+  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
@@ -133,8 +134,116 @@
   color: #1a73e8;
 }
 
-.bottom-bar p{
+.bottom-bar p {
   margin-top: 18px;
   font-size: small;
   text-align: center;
+}
+
+
+.gemini-style-result {
+
+  padding: 12px;
+  border-radius: 12px;
+
+  max-width: 1400px;
+  margin: 0px 20px auto;
+  font-family: 'Segoe UI', sans-serif;
+  color: #2e2e2e;
+  max-height: 70vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  margin-bottom: 40px;
+}
+
+.prompt-label {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #555;
+}
+
+.prompt-box {
+  background: #ffffff;
+  padding: 12px 16px;
+
+  margin-bottom: 20px;
+  white-space: pre-wrap;
+
+  align-items: center;
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  flex-direction: row;
+}
+
+.prompt-box img {
+  width: 48px;
+  border-radius: 50%;
+  align-items: start;
+}
+
+.prompt-box p {
+  margin-left: 20px;
+  font-size: 20px;
+  color: #333;
+}
+
+.response-box {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+ 
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
+
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  color: #5b5ddf;
+  margin-top: 4px;
+
+}
+
+
+
+.markdown-response {
+  line-height: 1.6;
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 18px;
+}
+
+.markdown-response p {
+  margin: 0 0 1rem 0;
+}
+
+.markdown-response strong {
+  font-weight: 600;
+}
+
+.markdown-response code {
+  background-color: #ef8e8e;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95em;
+}
+
+.markdown-response pre {
+  background-color: #272822;
+  color: #f8f8f2;
+  padding: 12px;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 0.9em;
+}
+
+.loading {
+  color: #888;
+  font-style: italic;
 }
