@@ -5,6 +5,8 @@ import { FaMicrophone, FaPaperPlane } from 'react-icons/fa';
 import { chatContext } from '../../context/context';
 import { RiGeminiFill } from "react-icons/ri";
 import './Main.css';
+import Loading from './Loading';
+
 const Main = () => {
   const { input, setInput, onSent, recentPrompt, showResult, loading, resultData } = useContext(chatContext);
 
@@ -60,17 +62,16 @@ const Main = () => {
             <div className="response-box">
               {loading ? (
                 <>
-                  <RiGeminiFill className='icon' />
-                  <p className="loading">Loading...</p>
+                  <Loading />
                 </>
               ) : (
-                <p className="markdown-response">
+                <div className="markdown-response">
                   <RiGeminiFill className='icon' />
-                  <ReactMarkdown >
+                  <p><ReactMarkdown >
                     {resultData}
-                  </ReactMarkdown>
+                  </ReactMarkdown></p>
 
-                </p>
+                </div>
               )}
             </div>
           </div>

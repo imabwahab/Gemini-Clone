@@ -1,0 +1,67 @@
+/* This keyframe will create the initial slide animation  */
+
+@keyframes expanding {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@keyframes moving {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.loading-bar {
+  height: 1.25rem;
+  transform-origin: left;
+  animation: expanding 0.4s 0.7s forwards linear, moving 1s 1s infinite forwards linear;
+  border-radius: 0.125rem;
+  background-image: linear-gradient(to right, #8e90ef 30%, #ff4e50 60%, #5b5ddf);
+  background-size: 200% auto;
+  opacity: 0;
+  animation-delay: 100ms;
+  margin-bottom: 14px;
+}
+
+.loader-container {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 20px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.user-icon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  margin-top: 4px;
+  background: linear-gradient(135deg, #ff4e50, #5b5ddf);
+  /* red to bluish */
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: spin 1.5s linear infinite;
+  /* 👈 spinning */
+}

@@ -6,7 +6,7 @@
 }
 
 .messageWindow nav {
-  padding: 20px 10px;
+  padding: 20px 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -192,29 +192,26 @@
   background: #ffffff;
   padding: 20px;
   border-radius: 8px;
- 
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 20px;
 
 }
 
 .icon {
-  width: 48px;
-  height: 48px;
+  width: 36px;
+  height: 36px;
   flex-shrink: 0;
-  color: #5b5ddf;
   margin-top: 4px;
-
+  background: linear-gradient(135deg, #ff4e50, #5b5ddf); /* red to bluish */
+  border-radius: 50%;
+  color: white;
 }
+
 
 
 
 .markdown-response {
   line-height: 1.6;
   display: grid;
-  grid-template-columns: 72px 1fr;
+  grid-template-columns: 48px 1fr;
   gap: 18px;
 }
 
