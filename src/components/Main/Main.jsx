@@ -5,10 +5,10 @@ import { FaMicrophone, FaPaperPlane } from 'react-icons/fa';
 import { chatContext } from '../../context/context';
 import { RiGeminiFill } from "react-icons/ri";
 import './Main.css';
-import Loading from './Loading';
+import Loading from '../Loader/Loading';
 
 const Main = () => {
-  const { input, setInput, onSent, recentPrompt, showResult, loading, resultData } = useContext(chatContext);
+  const { input, setInput, onSent, recentPrompt, showResult, loading, resultData, setRecentPrompt } = useContext(chatContext);
 
   const inputRef = useRef(null);
 
@@ -17,18 +17,20 @@ const Main = () => {
     const message = inputRef.current.value.trim();
     if (message) {
       setInput(message);
+      onSent(message)
       inputRef.current.value = '';
     }
-
   }
+
   return (
     <div className='messageWindow'>
       <nav>
         <p>Gemini</p>
-        <img src={assets.user_icon} alt="" />
+        <img src={assets.panda} alt="" />
       </nav>
 
       <div className="mainContainer">
+
         {!showResult && <div className="greet">
           <p><span>Hello, Abdul Wahab.</span></p>
           <p>How I can help you today?</p>
@@ -55,8 +57,8 @@ const Main = () => {
           <div className="gemini-style-result">
 
             <div className="prompt-box">
-              <img src={assets.user_icon} alt="" />
-              <p>{recentPrompt}</p>
+              <img src={assets.panda} alt="" />
+              <p>{input}</p>
             </div>
 
             <div className="response-box">
@@ -67,9 +69,9 @@ const Main = () => {
               ) : (
                 <div className="markdown-response">
                   <RiGeminiFill className='icon' />
-                  <p><ReactMarkdown >
+                  <div><ReactMarkdown >
                     {resultData}
-                  </ReactMarkdown></p>
+                  </ReactMarkdown></div>
 
                 </div>
               )}
@@ -94,12 +96,8 @@ const Main = () => {
               </button>
             </div>
           </form>
-
-
         </div>
       </div>
-
-
 
     </div>
 

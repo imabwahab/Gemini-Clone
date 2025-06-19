@@ -34,7 +34,7 @@
 
 .messageWindow .mainContainer .greet span {
   color: #282828;
-  background: -webkit-linear-gradient(16deg, #ff6ec4, #7873f5);
+  background: -webkit-linear-gradient(16deg, #ff4e50 40%, #5b5ddf);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

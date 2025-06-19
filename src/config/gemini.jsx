@@ -31,8 +31,6 @@ async function runChat(prompt) {
 
   const resultText = response.candidates[0]?.content?.parts[0]?.text || '';
 
-  console.log(resultText);
-
   return resultText; 
 }
 

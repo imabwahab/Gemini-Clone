@@ -5,7 +5,7 @@ import runChat from "../config/gemini";
 export const chatContext = createContext({
   input: "",
   setInput: () => { },
-  recentPrompt: "",
+  recentPrompt: [],
   setRecentPrompt: () => { },
   previousPrompt: "",
   setPreviousPrompt: () => { },
@@ -21,7 +21,7 @@ export const chatContext = createContext({
 
 export const ContextProvider = (props) => {
   const [input, setInput] = useState('');
-  const [recentPrompt, setRecentPrompt] = useState("");
+  const [recentPrompt, setRecentPrompt] = useState([]);
   const [previousPrompt, setPreviousPrompt] = useState("");
   const [showResult, setShowResult] = useState(false);
   const [resultData, setResultData] = useState('');
@@ -29,25 +29,18 @@ export const ContextProvider = (props) => {
 
   const onSent = async (message) => {
     setResultData('');
+
     setLoading(true);
     setShowResult(true);
     const result = await runChat(message);
     if (result !== null) {
+      setRecentPrompt(prev => [...prev, message]);
       setResultData(result);
       setLoading(false);
       setShowResult(true);
-      setInput(''); // Clear input after sending
-      
+
     }
   }
-
-  // This effect runs whenever `input` changes
-  useEffect(() => {
-    if (input.trim() !== '') {
-      onSent(input);
-      setRecentPrompt(input);
-    }
-  }, [input]); 
 
   const contextValue = {
     input,
