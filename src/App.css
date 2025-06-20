@@ -19,3 +19,12 @@
   flex-direction: row;
 }
 
+
+/* Stack layout for mobile */
+@media (max-width: 768px) {
+  .App {
+    flex-direction: column;
+  }
+}
+
+

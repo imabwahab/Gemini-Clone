@@ -1,0 +1,20 @@
+nav {
+  padding: 20px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 20px;
+  color: #585858;
+}
+
+nav img {
+  width: 48px;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 768px) {
+  .messageWindow nav {
+    padding: 16px;
+    font-size: 16px;
+  }
+}
